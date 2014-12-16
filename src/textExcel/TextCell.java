@@ -8,7 +8,7 @@ package textExcel;
 
 /**
  *
- * @author s-yinb
+ * @author s-yinb 
  */
 public class TextCell implements Cell{
     String text;
@@ -17,11 +17,11 @@ public class TextCell implements Cell{
     }
     @Override
     public String abbreviatedCellText() {
-        return String.format("%7f..." text);
+        return String.format("%7s...", text);
     }
 
     @Override
     public String fullCellText() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return text;
     }
 }

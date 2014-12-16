@@ -14,11 +14,11 @@ public class EmptyCell implements Cell{
     public EmptyCell(){};
     @Override
     public String abbreviatedCellText() {
-        return "";
+        return "          ";
     }
 
     @Override
     public String fullCellText() {
-        return "";
+        return "   ";
     }
 }

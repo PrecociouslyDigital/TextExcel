@@ -12,8 +12,10 @@ public class TextExcel
 		Grid sheet = new Spreadsheet(); // Keep this as the first statement in main
 		String input = "";
                 Scanner con = new Scanner(System.in);
+                System.out.println(sheet.getGridText());
                 while(!input.equalsIgnoreCase("quit")){
                     System.out.println(sheet.processCommand(input));
+                    input = con.nextLine();
                 }
 	}
 }
