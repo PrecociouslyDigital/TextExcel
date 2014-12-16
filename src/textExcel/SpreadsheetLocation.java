@@ -13,7 +13,11 @@ public class SpreadsheetLocation implements Location {
 
     private int row;
     private int col;
-
+    
+    public SpreadsheetLocation(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
     public SpreadsheetLocation(int row, char col) {
         col = Character.toLowerCase(col);
         this.row = row;
