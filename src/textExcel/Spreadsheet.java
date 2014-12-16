@@ -1,6 +1,10 @@
 package textExcel;
 // Update this file with your own code.
 
+import textExcel.cellTypes.Cell;
+import textExcel.cellTypes.EmptyCell;
+
+
 public class Spreadsheet implements Grid {
     
     Cell[][] data;
@@ -11,8 +15,12 @@ public class Spreadsheet implements Grid {
         for(int i = 0; i < y; i++)
             for(int j = 0; j < x; j++)
                 data[i][j] = new EmptyCell();
-        
-        
+    }
+    public void clear(){
+        data = new Cell[y][x];
+        for(int i = 0; i < y; i++)
+            for(int j = 0; j < x; j++)
+                data[i][j] = new EmptyCell();
     }
     public Spreadsheet(int x, int y){
         data = new Cell[y][x];
@@ -23,6 +31,11 @@ public class Spreadsheet implements Grid {
     
     @Override
     public String processCommand(String command) {
+        String[] parts = command.split(" ", 3);
+        switch(parts[2].charAt(0)){
+            case '"':
+                
+        }
         return "";
     }
 

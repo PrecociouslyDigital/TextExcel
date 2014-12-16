@@ -1,4 +1,4 @@
-package textExcel;
+package textExcel.cellTypes;
 /**
  *
  * @author Benjamin

@@ -6,9 +6,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import textExcel.cellTypes.Cell;
 
 public class Tests {
-
 	public static class TestLocation implements Location {
 		// Simple implementation of Location interface for use only by tests.
 		int row;

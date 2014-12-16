@@ -1,6 +1,6 @@
 package textExcel;
 // Do not modify this file
-
+import textExcel.cellTypes.Cell;
 public interface Grid 
 {
 	// Grid interface, must be implemented by your Spreadsheet class

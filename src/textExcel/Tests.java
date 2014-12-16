@@ -2,11 +2,11 @@ package textExcel;
 // Do not modify this file
 // Version 1.0
 
-import textExcel.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import textExcel.cellTypes.Cell;
 
 public class Tests {
 
