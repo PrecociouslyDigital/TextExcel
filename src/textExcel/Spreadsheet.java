@@ -3,6 +3,8 @@ package textExcel;
 
 import textExcel.cellTypes.Cell;
 import textExcel.cellTypes.EmptyCell;
+import textExcel.cellTypes.FormulaCell;
+import textExcel.cellTypes.TextCell;
 
 
 public class Spreadsheet implements Grid {
@@ -28,29 +30,25 @@ public class Spreadsheet implements Grid {
             for(int j = 0; j < x; j++)
                 data[i][j] = new EmptyCell();
     }
-    
     @Override
     public String processCommand(String command) {
         String[] parts = command.split(" ", 3);
         switch(parts[2].charAt(0)){
             case '"':
-                
+                setCell(new SpreadsheetLocation(parts[0]), new TextCell(parts[2].substring(1,parts[2].length()-2)));
         }
         return "";
     }
-
     @Override
     public int getRows() {
         // TODO Auto-generated method stub
         return data.length;
     }
-
     @Override
     public int getCols() {
         // TODO Auto-generated method stub
         return data[0].length;
     }
-
     @Override
     public Cell getCell(Location loc) {
         // TODO Auto-generated method stub
@@ -76,5 +74,11 @@ public class Spreadsheet implements Grid {
             row += formatCellText(cell);
         row += "|\n";
         return row;
+    }
+    public void setCell(SpreadsheetLocation loc, Cell cell){
+        Cell toBeDeleted = data[loc.getCol()][loc.getRow()];
+        if(toBeDeleted instanceof FormulaCell)
+            ((FormulaCell) toBeDeleted).destroy();
+        data[loc.getCol()][loc.getRow()] = cell;
     }
 }

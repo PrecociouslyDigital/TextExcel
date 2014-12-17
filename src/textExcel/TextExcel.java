@@ -4,12 +4,10 @@ package textExcel;
 import java.util.Scanner;
 
 
-public class TextExcel
-{
-
-	public static void main(String[] args)
-	{
-		Grid sheet = new Spreadsheet(); // Keep this as the first statement in main
+public class TextExcel{
+        public static Grid sheet;
+	public static void main(String[] args){
+		sheet = new Spreadsheet(); // Keep this as the first statement in main
 		String input = "";
                 Scanner con = new Scanner(System.in);
                 System.out.println(sheet.getGridText());
