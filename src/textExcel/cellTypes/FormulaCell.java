@@ -6,21 +6,18 @@
 
 package textExcel.cellTypes;
 
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import textExcel.CellRange;
 import textExcel.SpreadsheetLocation;
-import textExcel.TextExcel;
 
 /**
  *
  * @author s-yinb
  */
 public abstract class FormulaCell extends RealCell{
-    private List<SpreadsheetLocation> dependent;
-    private List<SpreadsheetLocation> dependencies;
-    private SpreadsheetLocation thisLocation;
+    //private List<SpreadsheetLocation> dependencies;
+    //private SpreadsheetLocation thisLocation;
     private boolean error = false;
+    
     @Override
     public String abbreviatedCellText() {
         if(!error)
@@ -37,7 +34,7 @@ public abstract class FormulaCell extends RealCell{
     }
     public abstract void calcValue();
 
-    private void applyChange(){
+    /*private void applyChange(){
         for(SpreadsheetLocation cell : dependencies){
             Cell celled = TextExcel.sheet.getCell(cell);
             if(celled instanceof FormulaCell){
@@ -57,5 +54,5 @@ public abstract class FormulaCell extends RealCell{
                 k.removeDependency(thisLocation);
             }
         }
-    }
+    }*/
 }

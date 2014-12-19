@@ -9,7 +9,7 @@ import textExcel.SpreadsheetLocation;
  */
 public class RealCell implements Cell {
     public double value;
-    private List<SpreadsheetLocation> dependencies;
+    
 
     @Override
     public String abbreviatedCellText() {
@@ -21,17 +21,5 @@ public class RealCell implements Cell {
     }
     public double getValue(){
         return value;
-    }
-    public List<SpreadsheetLocation> getAffected(){
-        return dependencies;
-    }
-    public void setDependencies(List<SpreadsheetLocation> cells){
-        dependencies = cells;
-    }
-    public void addDependency(SpreadsheetLocation cell){
-        dependencies.add(cell);
-    }
-    public void removeDependency(SpreadsheetLocation loc){
-        dependencies.remove(loc);
     }
 }

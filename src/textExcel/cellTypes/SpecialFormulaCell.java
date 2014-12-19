@@ -6,10 +6,16 @@
 
 package textExcel.cellTypes;
 
+import textExcel.SpreadsheetLocation;
+
 /**
  *
  * @author s-yinb
  */
-public class SumForumlaCell {
+public abstract class SpecialFormulaCell extends FormulaCell {
     
+
+    public void reCalc(SpreadsheetLocation loc){
+        
+    }
 }
