@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import textExcel.cellTypes.Cell;
+import textExcel.Cell;
 
 public class Tests {
 

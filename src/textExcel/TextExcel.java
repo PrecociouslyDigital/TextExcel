@@ -11,7 +11,7 @@ public class TextExcel{
 		String input = "";
                 Scanner con = new Scanner(System.in);
                 System.out.println(sheet.getGridText());
-                input = con.nextLine();
+                input = con.nextLine().trim();
                 while(!input.equalsIgnoreCase("quit")){
                     System.out.println(sheet.processCommand(input));
                     input = con.nextLine();

@@ -1,4 +1,4 @@
-package textExcel.cellTypes;
+package textExcel;
 public class DateCell implements Cell{
     private byte day;
     private byte month;

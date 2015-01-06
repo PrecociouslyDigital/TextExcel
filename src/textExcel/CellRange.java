@@ -16,7 +16,7 @@ public class CellRange {
 
     public CellRange(SpreadsheetLocation start, SpreadsheetLocation end) {
 
-        if (start.getCol() > end.getCol()) {
+        /*if (start.getCol() > end.getCol()) {
             yGreater = start.getCol();
             yLesser = end.getCol();
         } else {
@@ -29,9 +29,14 @@ public class CellRange {
         } else {
             xGreater = end.getRow();
             xLesser = start.getRow();
-        }
+        }*/
+        yGreater = (end.getCol() > start.getCol()) ? end.getCol() : start.getCol();
+        yLesser = (end.getCol() < start.getCol()) ? end.getCol() : start.getCol();
+        xGreater = (end.getRow() > start.getRow()) ? end.getRow() : start.getRow();
+        xLesser = (end.getRow() < start.getRow()) ? end.getRow() : start.getRow();
         xDist = xGreater - xLesser;
         yDist = yGreater - yLesser;
+        
     }
 
     public SpreadsheetLocation getNext() {

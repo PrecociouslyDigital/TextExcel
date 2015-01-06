@@ -11,13 +11,13 @@ public class SpreadsheetLocation implements Location {
     }
     public SpreadsheetLocation(int row, char col) {
         col = Character.toLowerCase(col);
-        this.row = row;
+        this.row = row - 1;
         this.col = col - 'a';
     }
     public SpreadsheetLocation(String s) throws NotACellException {
         s = s.toLowerCase();
         try{
-        this.col = Byte.parseByte(s.substring(1, s.length()));
+        this.col = Byte.parseByte(s.substring(1, s.length())) - 1;
         }catch(StringIndexOutOfBoundsException e){
             NotACellException up = new NotACellException();
             throw up;

@@ -2,12 +2,6 @@ package textExcel;
 // Update this file with your own code.
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import textExcel.cellTypes.Cell;
-import textExcel.cellTypes.DateCell;
-import textExcel.cellTypes.EmptyCell;
-import textExcel.cellTypes.NotADateException;
-import textExcel.cellTypes.RealCell;
-import textExcel.cellTypes.TextCell;
 
 public class Spreadsheet implements Grid {
 
@@ -86,7 +80,7 @@ public class Spreadsheet implements Grid {
         }else if(parts.length == 2){
             if(parts[0].equalsIgnoreCase("clear"))
                 try {
-                    setCell(new SpreadsheetLocation(parts[2]), new EmptyCell());
+                    setCell(new SpreadsheetLocation(parts[1]), new EmptyCell());
             } catch (NotACellException ex) {
                     errorMessage();
             }
@@ -120,7 +114,7 @@ public class Spreadsheet implements Grid {
     @Override
     public Cell getCell(Location loc) {
         // TODO Auto-generated method stub
-        return data[loc.getCol()-1][loc.getRow()];
+        return data[loc.getCol()][loc.getRow()];
     }
 
     @Override
@@ -153,7 +147,7 @@ public class Spreadsheet implements Grid {
         /*Cell toBeDeleted = data[loc.getCol()][loc.getRow()];
          if(toBeDeleted instanceof FormulaCell)
          ((FormulaCell) toBeDeleted).destroy();*/
-        data[loc.getCol()-1][loc.getRow()] = cell;
+        data[loc.getCol()][loc.getRow()] = cell;
     }
     private Cell parseCell(String toBeParsed) throws NotACellException {
         switch (toBeParsed.charAt(0)) {

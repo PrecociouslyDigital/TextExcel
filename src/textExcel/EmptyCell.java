@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package textExcel.cellTypes;
+package textExcel;
 
 /**
  *
@@ -18,6 +18,6 @@ public class EmptyCell implements Cell{
 
     @Override
     public String fullCellText() {
-        return "   ";
+        return "";
     }
 }

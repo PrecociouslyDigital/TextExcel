@@ -1,4 +1,4 @@
-package textExcel.cellTypes;
+package textExcel;
 // Do not modify this file
 
 public interface Cell

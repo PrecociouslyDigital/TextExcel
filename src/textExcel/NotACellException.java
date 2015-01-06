@@ -1,8 +1,5 @@
 package textExcel;
 
-/**
- *
- * @author Benjamin
- */
-public class NotACellException extends Exception{
+public class NotACellException extends Exception {
+
 }
