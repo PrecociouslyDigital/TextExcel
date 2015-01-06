@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package textExcel;
-
 import java.util.Iterator;
-
 /**
  *
  * @author s-yinb
  */
 public class CellRange {
 
-    private int xGreater;
-    private int yGreater;
-    private int xLesser;
-    private int yLesser;
-    private int xDist;
-    private int yDist;
+    private final int xGreater;
+    private final int yGreater;
+    private final int xLesser;
+    private final int yLesser;
+    private final int xDist; 
+    private final int yDist;
     private int counter = 0;
 
     public CellRange(SpreadsheetLocation start, SpreadsheetLocation end) {
@@ -42,12 +35,19 @@ public class CellRange {
     }
 
     public SpreadsheetLocation getNext() {
-        if(hasNext())
-            return new SpreadsheetLocation(counter % xDist, counter / xDist);
+        if(hasNext()){
+            return new SpreadsheetLocation(counter % xDist + xLesser, counter++ / xDist + yLesser);
+        }
         else
             return null;
     }
     public boolean hasNext(){
         return counter <= (xDist+1) * (yDist+1);
+    }
+    public void rewind(){
+        counter = 0;
+    }
+    public boolean contains(SpreadsheetLocation loc){
+        return loc.getCol() > yLesser && loc.getCol() < yGreater && loc.getRow() > xLesser && loc.getRow() < xGreater;
     }
 }

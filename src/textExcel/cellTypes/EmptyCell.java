@@ -11,7 +11,6 @@ package textExcel.cellTypes;
  * @author s-yinb
  */
 public class EmptyCell implements Cell{
-    public EmptyCell(){};
     @Override
     public String abbreviatedCellText() {
         return "          ";

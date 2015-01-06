@@ -1,8 +1,4 @@
 package textExcel.cellTypes;
-/**
- *
- * @author Benjamin
- */
 public class DateCell implements Cell{
     private byte day;
     private byte month;
@@ -16,15 +12,30 @@ public class DateCell implements Cell{
         }catch(NumberFormatException e){
             throw new NotADateException();
         }
+        month %= 12;
+        if(month == 0)
+            month = 12;
+        day %= 31;
+        if(day == 0)
+            day = 31;
+        if(year < 100){
+            if(year < 16){
+                year += 2000;
+            }else{
+                year += 1900;
+            }
+        }
     }
     @Override
     public String abbreviatedCellText() {
-        return month + "/" + day + "/" + year;
+        String toSender = month + "/" + day + "/" + year;
+        while(toSender.length() < 9){
+            toSender += " ";
+        }
+        return toSender;
     }
-
     @Override
     public String fullCellText() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return month + "/" + day + "/" + year;
     }
-    
 }

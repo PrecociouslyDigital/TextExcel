@@ -17,7 +17,13 @@ public class TextCell implements Cell{
     }
     @Override
     public String abbreviatedCellText() {
-        return String.format("%7s...", text);
+        int len;
+        if(text.length() < 12){
+            len = text.length() - 1;
+        }else{
+            len = 11;
+        }
+        return String.format("%-10s", text.substring(1, len));
     }
 
     @Override
