@@ -17,7 +17,7 @@ public class SpreadsheetLocation implements Location {
     public SpreadsheetLocation(String s) throws NotACellException {
         s = s.toLowerCase();
         try{
-        this.col = Byte.parseByte(s.substring(1, s.length())) - 1;
+        this.row = Byte.parseByte(s.substring(1, s.length())) - 1;
         }catch(StringIndexOutOfBoundsException e){
             NotACellException up = new NotACellException();
             throw up;
@@ -25,7 +25,7 @@ public class SpreadsheetLocation implements Location {
             NotACellException up = new NotACellException();
             throw up;//I'm sorry.
         }
-        this.row = s.charAt(0) - 'a';
+        this.col = s.charAt(0) - 'a';
     }
     @Override
     public int getRow() {

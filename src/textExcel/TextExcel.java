@@ -3,6 +3,8 @@ package textExcel;
 
 import java.util.Scanner;
 
+import textExcel.Tests.Helper;
+
 
 public class TextExcel{
         public static Grid sheet;

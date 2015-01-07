@@ -81,11 +81,11 @@ public class Spreadsheet implements Grid {
             if(parts[0].equalsIgnoreCase("clear"))
                 try {
                     setCell(new SpreadsheetLocation(parts[1]), new EmptyCell());
+                    return getGridText();
             } catch (NotACellException ex) {
-                    errorMessage();
-            }
-            else
-                errorMessage();
+                    return errorMessage();
+            } else
+                return errorMessage();
         }
         if (parts[1].equalsIgnoreCase("=")) {
             try{
@@ -114,19 +114,19 @@ public class Spreadsheet implements Grid {
     @Override
     public Cell getCell(Location loc) {
         // TODO Auto-generated method stub
-        return data[loc.getCol()][loc.getRow()];
+        return data[loc.getRow()][loc.getCol()];
     }
 
     @Override
     public String getGridText() {
         // TODO Auto-generated method stub
-        String grid = "  ";
+        String grid = "   ";
         for (byte i = 0; i < data[0].length; i++) {
             grid += String.format("|%-10c", (char) (i + 'A'));
         }
         grid += "|\n";
         for (int i = 0; i < data.length; i++) {
-            grid += String.format("%2d", i + 1) + formatRow(data[i]);
+            grid += String.format("%-3d", i + 1) + formatRow(data[i]);
         }
         return grid;
     }
@@ -147,7 +147,7 @@ public class Spreadsheet implements Grid {
         /*Cell toBeDeleted = data[loc.getCol()][loc.getRow()];
          if(toBeDeleted instanceof FormulaCell)
          ((FormulaCell) toBeDeleted).destroy();*/
-        data[loc.getCol()][loc.getRow()] = cell;
+    	data[loc.getRow()][loc.getCol()] = cell;
     }
     private Cell parseCell(String toBeParsed) throws NotACellException {
         switch (toBeParsed.charAt(0)) {
