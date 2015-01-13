@@ -55,4 +55,5 @@ public class CellRange {
     public boolean contains(SpreadsheetLocation loc){
         return loc.getCol() > yLesser && loc.getCol() < yGreater && loc.getRow() > xLesser && loc.getRow() < xGreater;
     }
+    
 }

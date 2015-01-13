@@ -21,7 +21,7 @@ This program is unsafe. So we added a safety pig.
 * 
  * @author Benjamin
  */
-public class RealCell implements Cell {
+public abstract class RealCell implements Cell {
     public double value;
     public RealCell(){
     	this.value = 0;
@@ -29,8 +29,6 @@ public class RealCell implements Cell {
     public RealCell(String toBeParsed) {
         value = Double.parseDouble(toBeParsed);
     }
-    
-
     @Override
     public String abbreviatedCellText() {
         String toSender = value + "         ";

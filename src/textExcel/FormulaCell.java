@@ -25,13 +25,16 @@ import textExcel.TextExcel;
 public class FormulaCell extends RealCell{
     //private List<SpreadsheetLocation> dependencies;
     //private SpreadsheetLocation thisLocation;
-    private boolean error = false;
-    private CellRange range;
+    private boolean error;
+    //private CellRange range;
     private FormulaType type;
+    private int xGreater;
+    private int yGreater;
+    private int xLesser;
+    private int yLesser;
     private enum FormulaType{
         AVG,
         SUM,
-        ERR
     }
     private FormulaType parseFormula(String given){
         given = given.toUpperCase();
@@ -41,7 +44,7 @@ public class FormulaCell extends RealCell{
             case "SUM":
                 return FormulaType.SUM;
             default:
-                return FormulaType.ERR;
+            	return null;
         }
     }
 
@@ -52,9 +55,15 @@ public class FormulaCell extends RealCell{
      */
     public FormulaCell(String toBeParsed) throws NotACellException {
         String[] parts = toBeParsed.split(" ");
+        error = false;
         type = parseFormula(parts[0]);
         toBeParsed = parts[1];
-        range = new CellRange(new SpreadsheetLocation(toBeParsed.split("-")[0].trim()),new SpreadsheetLocation(toBeParsed.split("-")[1].trim()));
+        SpreadsheetLocation end = new SpreadsheetLocation(toBeParsed.split("-")[0].trim());
+        SpreadsheetLocation start = new SpreadsheetLocation(toBeParsed.split("-")[1].trim());
+        yGreater = (end.getCol() > start.getCol()) ? end.getCol() : start.getCol();
+        yLesser = (end.getCol() < start.getCol()) ? end.getCol() : start.getCol();
+        xGreater = (end.getRow() > start.getRow()) ? end.getRow() : start.getRow();
+        xLesser = (end.getRow() < start.getRow()) ? end.getRow() : start.getRow();
         calcValue();
         //super(toBeParsed);
     }
@@ -75,16 +84,34 @@ public class FormulaCell extends RealCell{
             return "#ERROR";
     }
     public void calcValue(){// I'm sorry.
-        if(type == FormulaType.ERR){
+    	double sum = 0;
+    	error = false;
+        /*if(type == FormulaType.ERR){
             error = true;
             return;
         }else{
             error = false;
         }
-        double sum = 0;
+        
         while(range.hasNext()){
             sum += ((RealCell) (TextExcel.sheet.getCell(range.getNext()))).getValue();
         }
+        if(type == FormulaType.AVG)
+        	sum / range.ge*/
+    	for(int i = xLesser; i < xGreater; i++){
+    		for(int j = yLesser; j < yGreater; j++){
+        		Cell cell = TextExcel.sheet.getCell(new SpreadsheetLocation(i,j));
+        		if(cell instanceof RealCell){
+        			sum += ((RealCell) cell).getValue();
+        		}else{
+        			error = true;
+        			return;
+        		}
+        	}
+    	}
+    	if(type == FormulaType.AVG)
+        	sum /= (xGreater - xLesser + 1) * (yGreater- yLesser + 1);
+    	value = sum;
     }
     /*private void applyChange(){
         for(SpreadsheetLocation cell : dependencies){

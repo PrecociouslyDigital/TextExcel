@@ -12,7 +12,7 @@ public class DateCell implements Cell{
         }catch(NumberFormatException e){
             throw new NotADateException();
         }
-        month %= 12;
+        /*month %= 12;
         if(month == 0)
             month = 12;
         day %= 31;
@@ -24,11 +24,11 @@ public class DateCell implements Cell{
             }else{
                 year += 1900;
             }
-        }
+        }*/
     }
     @Override
     public String abbreviatedCellText() {
-        String toSender = month + "/" + day + "/" + year;
+        String toSender = String.format("%02d/%02d/%02d", month, day, year);
         while(toSender.length() < 9){
             toSender += " ";
         }
@@ -36,6 +36,6 @@ public class DateCell implements Cell{
     }
     @Override
     public String fullCellText() {
-        return month + "/" + day + "/" + year;
+        return String.format("%02d/%02d/%02d", month, day, year);
     }
 }

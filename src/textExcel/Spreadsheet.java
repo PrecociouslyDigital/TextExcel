@@ -161,7 +161,7 @@ public class Spreadsheet implements Grid {
             case '(':
                 if (toBeParsed.endsWith(")")) //TODO: lots
                 {
-                    break;
+                    return new TempFormulaCell(toBeParsed);
                 }
             default:
                 if (toBeParsed.contains("/")) {
@@ -174,7 +174,7 @@ public class Spreadsheet implements Grid {
                     String[] parts = toBeParsed.split(" ");
                 } else {
                     try {
-                        return new RealCell(toBeParsed);
+                        return new ValueCell(toBeParsed);
                     } catch (NumberFormatException e) {
                         throw new NotACellException();
                     }
