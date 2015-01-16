@@ -8,7 +8,7 @@ import textExcel.SpreadsheetLocation;
  *
  * @author s-yinb
  */
-public class ArithmaticCells extends FormulaCell {
+public class ArithmaticCells extends SpecialFormulaCell {
     
 	
 	public ArithmaticCells(String toBeParsed) throws NotACellException {
