@@ -7,9 +7,8 @@ import textExcel.Tests.Helper;
 
 
 public class TextExcel{
-        public static Grid sheet;
+        public static Grid sheet = new Spreadsheet();
 	public static void main(String[] args){
-		sheet = new Spreadsheet(); // Keep this as the first statement in main
 		String input = "";
                 Scanner con = new Scanner(System.in);
                 System.out.println(sheet.getGridText());

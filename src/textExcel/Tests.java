@@ -693,7 +693,7 @@ public class Tests {
 			grid.processCommand("A2 = 3.5");
 			grid.processCommand("A4 = 27.4");
 			grid.processCommand("A5 = 11.182");
-			grid.processCommand("L18 = " + formula);
+			grid.processCommand("L18 = "+ formula);
 			Cell cell = grid.getCell(new TestLocation(17, 11));
 			assertEquals("reference formula value length", 10, cell.abbreviatedCellText().length());
 			double resultInitial = Double.parseDouble(cell.abbreviatedCellText());

@@ -1,6 +1,7 @@
 package textExcel;
 
 import java.util.List;
+import java.util.Set;
 
 public class ConstantValue implements Value {
 	private double value;
@@ -11,7 +12,7 @@ public class ConstantValue implements Value {
 		this.value = Double.parseDouble(value);
 	}
 	@Override
-	public double getValue(List<SpreadsheetLocation> list) {
+	public double getValue() throws NotARealCellException {
 		// TODO Auto-generated method stub
 		return value;
 	}

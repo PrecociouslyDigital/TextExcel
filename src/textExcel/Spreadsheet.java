@@ -34,7 +34,6 @@ public class Spreadsheet implements Grid {
             }
         }
     }
-
     public void clear() {
         data = new Cell[y][x];
         for (int i = 0; i < y; i++) {
@@ -43,7 +42,6 @@ public class Spreadsheet implements Grid {
             }
         }
     }
-
     public Spreadsheet(int x, int y) {
         data = new Cell[y][x];
         for (int i = 0; i < y; i++) {
@@ -52,7 +50,6 @@ public class Spreadsheet implements Grid {
             }
         }
     }
-
     @Override
     public String processCommand(String command) {
         if(command.equalsIgnoreCase("")){
@@ -104,13 +101,11 @@ public class Spreadsheet implements Grid {
         // TODO Auto-generated method stub
         return data.length;
     }
-
     @Override
     public int getCols() {
         // TODO Auto-generated method stub
         return data[0].length;
     }
-
     @Override
     public Cell getCell(Location loc) {
         // TODO Auto-generated method stub
@@ -161,7 +156,15 @@ public class Spreadsheet implements Grid {
             case '(':
                 if (toBeParsed.endsWith(")")) //TODO: lots
                 {
-                    return new TempFormulaCell(toBeParsed);
+                	toBeParsed = toBeParsed.toUpperCase();
+                	if(toBeParsed.contains("AVG")|toBeParsed.contains("SUM"))
+                		return new SpecialFormulaCell(toBeParsed.substring(1, toBeParsed.length()-1));
+                	else try {
+						return new ArithmaticCells(toBeParsed.substring(1, toBeParsed.length()-1));
+					} catch (NotAnOperatorException e) {
+						// TODO Auto-generated catch block
+						System.out.println("Not a valid formula!");
+					}
                 }
             default:
                 if (toBeParsed.contains("/")) {

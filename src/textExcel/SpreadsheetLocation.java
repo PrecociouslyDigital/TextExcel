@@ -15,7 +15,7 @@ public class SpreadsheetLocation implements Location {
         this.col = col - 'a';
     }
     public SpreadsheetLocation(String s) throws NotACellException {
-        s = s.toLowerCase();
+        s = s.toLowerCase().trim();
         try{
         this.row = Byte.parseByte(s.substring(1, s.length())) - 1;
         }catch(StringIndexOutOfBoundsException e){

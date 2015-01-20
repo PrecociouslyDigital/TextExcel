@@ -23,21 +23,22 @@ This program is unsafe. So we added a safety pig.
  */
 public abstract class RealCell implements Cell {
     public double value;
-    public RealCell(){
-    	this.value = 0;
-    }
+    protected boolean error;
     public RealCell(String toBeParsed) {
         value = Double.parseDouble(toBeParsed);
     }
+    public RealCell(){
+    	value = 0;
+    }
     @Override
     public String abbreviatedCellText() {
-        String toSender = value + "         ";
+        String toSender = error?"#ERROR             ":getValue() + "          ";
         return toSender.substring(0, 10);
         //return String.format("%-10f", value);
     }
     @Override
     public String fullCellText() {
-        return Double.toString(value);
+        return error?"#ERROR":getValue() + "";
     }
     public double getValue(){
         return value;

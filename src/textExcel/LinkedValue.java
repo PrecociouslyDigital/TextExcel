@@ -1,32 +1,43 @@
 package textExcel;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class LinkedValue implements Value {
 	private SpreadsheetLocation link;
 	public LinkedValue(String parse) throws NotACellException{
-			link = new SpreadsheetLocation(parse);
+		link = new SpreadsheetLocation(parse);
 	}
 	public LinkedValue(SpreadsheetLocation loc){
 		link = loc;
 	}
 	@Override
-	public double getValue(List<SpreadsheetLocation> list) throws NotARealCellException,RecursiveLinkException{
-		// TODO Auto-generated method stub
-		if(list.contains(link))
-			throw new RecursiveLinkException();
-		list.add(link);
-		Cell cell = TextExcel.sheet.getCell(link);
+	public double getValue() throws NotARealCellException {
+		Cell cell = new EmptyCell();
+		Grid sheet = TextExcel.sheet;
+		cell = TextExcel.sheet.getCell(link);
 		if(cell instanceof RealCell){
-			if(cell instanceof FormulaCell){
-				return ((FormulaCell) cell).getDoubleRecur(list);
-			}else{
-				return ((RealCell) cell).getValue();
-			}
+			return ((RealCell) cell).getValue();
+		}else{
+			throw new NotARealCellException();
+		}
+	}
+	@Override
+	public double getValue(SpreadsheetLocation loc) throws NotARealCellException, RecursiveLinkException {
+		if(loc.getCol() ==  link.getCol() && loc.getRow() ==  link.getRow())
+			throw new RecursiveLinkException();
+		Cell cell = new EmptyCell();
+		Grid sheet = TextExcel.sheet;
+		cell = TextExcel.sheet.getCell(link);
+		if(cell instanceof RealCell){
+			if(cell instanceof FormulaCell)
+				return ((FormulaCell) cell).getValue();
+			return ((RealCell) cell).getValue();
 		}else{
 			throw new NotARealCellException();
 		}
 	}
 	
-
 }
