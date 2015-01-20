@@ -75,11 +75,46 @@ public class ArithmaticCells extends FormulaCell {
 			else if(ops[i-1] == Operators.DIVIDES)
 				total /= vals[i].getValue();
 		}
+		error = false;
 		return total;
 		}catch(NotARealCellException e){
 			error = true;
 			return 0;
+		}catch(StackOverflowError e){
+			error = true;
+			return 0;
 		}
+	}
+	@Override
+	public double getValue(SpreadsheetLocation loc) {
+		try{
+			double total = vals[0].getValue();
+			for(int i = 1; i < vals.length; i++){
+				/*switch(ops[i-1]){
+					case PLUS:
+						total += vals[i].getValue();
+					case MINUS:
+						total -= vals[i].getValue();
+					case TIMES:
+						total *= vals[i].getValue();
+					case DIVIDES:
+						total /= vals[i].getValue();
+				}*/
+				if(ops[i-1] == Operators.PLUS)
+					total += vals[i].getValue(loc);
+				else if(ops[i-1] == Operators.MINUS)
+					total -= vals[i].getValue(loc);
+				else if(ops[i-1] == Operators.TIMES)
+					total *= vals[i].getValue(loc);
+				else if(ops[i-1] == Operators.DIVIDES)
+					total /= vals[i].getValue(loc);
+			}
+			error = false;
+			return total;
+			}catch(NotARealCellException | RecursiveLinkException | StackOverflowError e){
+				error = true;
+				return 0;
+			}
 	}
 
 }

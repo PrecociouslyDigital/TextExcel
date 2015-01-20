@@ -9,7 +9,14 @@ public abstract class FormulaCell extends RealCell {
 	public FormulaCell(){
 		super("0");
 	}
+	public abstract double getValue(SpreadsheetLocation loc);
 	public String fullCellText(){
 		return "(" + thing + ")";
+	}
+	public String abbreviatedCellText(){
+		if(error)
+			return "#ERROR";
+		else
+			return getValue() + "";
 	}
 }

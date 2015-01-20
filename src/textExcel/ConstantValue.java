@@ -16,5 +16,11 @@ public class ConstantValue implements Value {
 		// TODO Auto-generated method stub
 		return value;
 	}
+	@Override
+	public double getValue(SpreadsheetLocation loc)
+			throws NotARealCellException, RecursiveLinkException {
+		// TODO Auto-generated method stub
+		return value;
+	}
 
 }

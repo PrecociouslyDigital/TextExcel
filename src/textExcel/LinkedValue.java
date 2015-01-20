@@ -19,6 +19,14 @@ public class LinkedValue implements Value {
 		Grid sheet = TextExcel.sheet;
 		cell = TextExcel.sheet.getCell(link);
 		if(cell instanceof RealCell){
+			if(cell instanceof FormulaCell){
+				FormulaCell thing = ((FormulaCell) cell);
+				if(thing.error){
+					throw new NotARealCellException();
+				}else{
+					return thing.getValue(link);
+				}
+			}
 			return ((RealCell) cell).getValue();
 		}else{
 			throw new NotARealCellException();
@@ -32,8 +40,14 @@ public class LinkedValue implements Value {
 		Grid sheet = TextExcel.sheet;
 		cell = TextExcel.sheet.getCell(link);
 		if(cell instanceof RealCell){
-			if(cell instanceof FormulaCell)
-				return ((FormulaCell) cell).getValue();
+			if(cell instanceof FormulaCell){
+				FormulaCell thing = ((FormulaCell) cell);
+				if(thing.error){
+					throw new NotARealCellException();
+				}else{
+					return thing.getValue(loc);
+				}
+			}
 			return ((RealCell) cell).getValue();
 		}else{
 			throw new NotARealCellException();
